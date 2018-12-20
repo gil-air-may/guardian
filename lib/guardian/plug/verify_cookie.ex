@@ -95,7 +95,8 @@ if Code.ensure_loaded?(Plug) do
 
     defp find_token_from_cookies(conn, opts) do
       key = conn |> storage_key(opts) |> token_key()
-      token = conn.req_cookies[key] || conn.req_cookies[to_string(key)]
+      #token = conn.req_cookies[key] || conn.req_cookies[to_string(key)]
+      %{"token" => token} = conn.req_cookies
       if token, do: {:ok, token}, else: :no_token_found
     end
 
